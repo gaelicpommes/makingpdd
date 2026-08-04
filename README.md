@@ -48,3 +48,25 @@ section. Use a scale above `1.0` or a positive offset to raise dose; use a scale
 below `1.0` or a negative offset to lower dose. `blend_mm` controls the smooth
 transition width. Recommended tuples remain inactive until copied into
 `MEASURED_SECTION_ADJUSTMENTS`.
+
+The current starter profiles target the requested shifted-depth regions only:
+9 MeV/10 cm at 0–15 and 40–60 mm; 9 MeV/5 cm at 0–15 and 20–50 mm;
+6 MeV/10 cm at 0–10 and 30–45 mm; 6 MeV/5 cm at 0–15 and 30–45 mm; and
+6 MeV/2 cm at 15–60 mm. The 9 MeV/2 cm profile is empty because no correction
+region was requested for that panel.
+
+For residual bumps after that first pass, the notebook also provides
+`RECOMMENDED_FINE_TUNE_ADJUSTMENTS`. This is a separate second stage with broad,
+low-amplitude corrections and large blend widths over the latest requested
+regions. It remains disabled by default and can be copied into
+`MEASURED_FINE_TUNE_ADJUSTMENTS` after enabling the main recommendations.
+
+## Direct simulation matching
+
+`ENABLE_SIMULATION_MATCH = True` applies a final, explicit interpolation-based
+match after shifting and section edits. At the default strength of `1.0`, each
+measured point is moved onto the simulated PDD at the same shifted depth, so the
+blue curve is drawn over the orange curve. The legend, panel annotation, summary,
+and pointwise audit output identify the result as simulation-matched. This is a
+post-hoc visualization/edit and must not be presented as independent validation;
+set the flag to `False` for the ordinary measured-versus-simulated comparison.
