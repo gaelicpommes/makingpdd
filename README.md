@@ -26,3 +26,12 @@ measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus
 measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
 differences. Figure typography defaults use larger bold titles and axis labels
 plus thicker curves and axes for Q1-journal readability.
+
+Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
+summary. The current notebook settings include `u_MC` at dmax plus the mean and
+maximum `u_MC` above the 10% dose region for every energy/applicator PDD. These
+uncertainty values are reported in the manuscript table and summary CSV only;
+they do not modify or re-weight the measured or simulated curves. The measured
+repeatability uncertainty is currently set to 0% because the three charge repeats
+were identical within recorded precision, while the 1 mm depth step is recorded
+as a ±0.5 mm depth-position uncertainty.
