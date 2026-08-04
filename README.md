@@ -9,4 +9,6 @@ measured PDD:
 
 The original measured values, shifted values, and final adjusted values are
 kept in the pointwise CSV output. See the notebook's **How to tune a measured
-PDD** section for examples and reporting cautions.
+PDD** section for examples, approximate starter tuples for all six panels, and
+reporting cautions. Starter tuples are disabled by default so that opening and
+running the notebook never silently edits measured dose values.
