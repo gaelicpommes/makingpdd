@@ -73,16 +73,23 @@ set the flag to `False` for the ordinary measured-versus-simulated comparison.
 
 ## Journal figure defaults
 
-The publication view uses open-circle markers without a connecting line for the
-discrete measured samples and a solid line for the continuous Geant4 curve.
+The requested publication view uses a dashed blue line without markers for the
+measured samples and a solid orange line for the Geant4 curve. Change
+`MEASURED_LINEWIDTH` to control the dashed-line thickness.
 Simulation matching is disabled by default. Panel shift annotations and coloured
 subplot backgrounds are removed, axes and data lines are heavier, and the depth
-axis ends at 65 mm without horizontal padding. Gamma uses a 0% dose threshold so
+axis ends at 60 mm without horizontal padding. Difference and gamma are solid
+lines without markers. Gamma uses a 0% dose threshold so
 it is evaluated through the final measured depth instead of stopping near the
 distal falloff; the numerical shift remains available in the audit CSV.
 
 Geant4 input also consists of discrete voxel-centre samples. They are dense, so
 the journal default draws them as a solid line without markers. Set
 `SHOW_SIMULATION_MARKERS = True` to add sparse simulation dots; use
-`SIMULATION_MARKER_EVERY` to change their spacing while retaining open circles
-for measured observations.
+`SIMULATION_MARKER_EVERY` to change their spacing while retaining the dashed
+line for measured observations.
+
+All shared axes use the exact 0–60 mm depth range and disable Matplotlib's
+horizontal margin. A curve touches the y-axis when its data contain a value at
+0 mm; the notebook does not fabricate or extrapolate missing entrance points
+for positively shifted curves.
