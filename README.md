@@ -19,3 +19,10 @@ as independent validation.
 All 9 MeV main, difference, and gamma axes span 0–70 mm; all 6 MeV axes span
 0–50 mm. Plotting-only endpoint extension makes each displayed line meet both
 vertical box sides without adding measured data or changing calculations.
+
+For manuscript reporting, the notebook now displays a journal-ready table and
+writes the same values to the summary CSV. For each PDD, the table includes
+measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus-
+measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
+differences. Figure typography defaults use larger bold titles and axis labels
+plus thicker curves and axes for Q1-journal readability.
