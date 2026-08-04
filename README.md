@@ -78,7 +78,7 @@ measured samples and a solid orange line for the Geant4 curve. Change
 `MEASURED_LINEWIDTH` to control the dashed-line thickness.
 Simulation matching is disabled by default. Panel shift annotations and coloured
 subplot backgrounds are removed, axes and data lines are heavier, and the depth
-axis ends at 60 mm without horizontal padding. Difference and gamma are solid
+axes end at 70 mm for 9 MeV and 50 mm for 6 MeV without horizontal padding. Difference and gamma are solid
 lines without markers. Gamma uses a 0% dose threshold so
 it is evaluated through the final measured depth instead of stopping near the
 distal falloff; the numerical shift remains available in the audit CSV.
@@ -89,7 +89,9 @@ the journal default draws them as a solid line without markers. Set
 `SIMULATION_MARKER_EVERY` to change their spacing while retaining the dashed
 line for measured observations.
 
-All shared axes use the exact 0–60 mm depth range and disable Matplotlib's
-horizontal margin. A curve touches the y-axis when its data contain a value at
-0 mm; the notebook does not fabricate or extrapolate missing entrance points
-for positively shifted curves.
+Every 9 MeV main/subplot axis uses 0–70 mm and every 6 MeV axis uses 0–50 mm.
+Display lines are extended to both boundaries so they touch both box sides. The
+extension uses the nearest endpoint only for drawing and does not add rows to the
+data or affect metrics. Difference and gamma are not smoothed. Optional Gaussian
+smoothing applies only to the displayed dashed measured PDD; raw measured points
+continue to drive difference, gamma, statistics, and CSV exports.
