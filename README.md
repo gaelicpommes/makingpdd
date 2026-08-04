@@ -32,3 +32,19 @@ weight-averaged where they overlap. This keeps the adjusted measured curve
 smooth instead of stacking corrections into visible bumps. The figure displays
 the difference panels from -5% to +5% and gamma panels from 0 to 1; exported
 values are not clipped by these display limits.
+
+## Hidden implementation cell
+
+The long analysis-functions cell is collapsed using Jupyter cell metadata while
+remaining fully executable. `Run All` still runs it before the plotting cell.
+The editable settings cell stays visible. Expand the cell in JupyterLab or
+remove its `jupyter.source_hidden` and `hide-input` metadata to show its source.
+
+## Adjustment tuple reference
+
+Each tuple is `(start_mm, end_mm, scale, offset_pp, blend_mm)`, and applies
+`adjusted dose = measured dose * scale + offset_pp` over the shifted-depth
+section. Use a scale above `1.0` or a positive offset to raise dose; use a scale
+below `1.0` or a negative offset to lower dose. `blend_mm` controls the smooth
+transition width. Recommended tuples remain inactive until copied into
+`MEASURED_SECTION_ADJUSTMENTS`.
