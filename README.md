@@ -70,3 +70,19 @@ blue curve is drawn over the orange curve. The legend, panel annotation, summary
 and pointwise audit output identify the result as simulation-matched. This is a
 post-hoc visualization/edit and must not be presented as independent validation;
 set the flag to `False` for the ordinary measured-versus-simulated comparison.
+
+## Journal figure defaults
+
+The publication view uses open-circle markers without a connecting line for the
+discrete measured samples and a solid line for the continuous Geant4 curve.
+Simulation matching is disabled by default. Panel shift annotations and coloured
+subplot backgrounds are removed, axes and data lines are heavier, and the depth
+axis ends at 65 mm without horizontal padding. Gamma uses a 0% dose threshold so
+it is evaluated through the final measured depth instead of stopping near the
+distal falloff; the numerical shift remains available in the audit CSV.
+
+Geant4 input also consists of discrete voxel-centre samples. They are dense, so
+the journal default draws them as a solid line without markers. Set
+`SHOW_SIMULATION_MARKERS = True` to add sparse simulation dots; use
+`SIMULATION_MARKER_EVERY` to change their spacing while retaining open circles
+for measured observations.
