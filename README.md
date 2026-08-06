@@ -118,3 +118,12 @@ tables and CSVs and are indicated by upward/downward triangles at the plot limit
 controls for every PDD. The block creates only separately named `SYNTHETIC_DEMO`
 PNG/CSV outputs without plot watermarks. It never changes the manuscript
 figure, nominal gamma pass rates, journal tables, or scientific pointwise CSVs.
+
+
+## Tunable synthetic spikes
+
+The separate synthetic demo combines ordinary Gaussian jitter with sparse
+heavy-tailed impulses. `SYNTHETIC_DEMO_SPIKES` controls each PDD independently as
+`(probability per point, dose spike scale in pp, gamma spike scale)`. Increase the
+probability to create more spikes or either scale to create taller spikes. These
+controls never affect the manuscript figure or nominal scientific outputs.
