@@ -5,8 +5,9 @@ and dose values are never shifted, smoothed, scaled, offset, or matched. Optiona
 regional matching modifies only Geant4 and exports both original and adjusted
 simulation values for audit.
 
-Set `SIMULATION_MATCH_SCALE` from `0.0` (original simulation) to `1.0` (full
-configured regional adjustment) to tune all cases at once. Each simulation range
+Set each entry in `SIMULATION_MATCH_SCALES` independently from `0.0` (original
+simulation) to `1.0` (full configured regional adjustment). The dictionary has a
+separate entry for every energy/applicator PDD combination. Each simulation range
 is `(start_mm, end_mm, strength, blend_mm)`, so individual regions remain
 tunable. Current strengths of `0.85`–`0.95` move Geant4 close to measurement without
 making the curves identical. Smooth blends retain gradual transitions, and the remaining
@@ -30,8 +31,8 @@ measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus
 measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
 differences. Figure typography defaults use larger bold titles and axis labels
 plus thicker curves and axes for Q1-journal readability. Difference and gamma
-panels preserve every calculated interior sample without smoothing; plotting-only
-endpoint extension makes both lines touch the vertical axes. Gamma ticks are
+panels preserve every raw calculated interior sample—including its noise—without
+smoothing, denoising, filtering, or interior resampling. Plotting-only endpoint extension makes both lines touch the vertical axes. Gamma ticks are
 spaced by 0.5 and the plot omits pass-rate annotations.
 
 Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
