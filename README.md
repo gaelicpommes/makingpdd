@@ -9,8 +9,8 @@ Set each entry in `SIMULATION_MATCH_SCALES` independently from `0.0` (original
 simulation) to `1.0` (full configured regional adjustment). The dictionary has a
 separate entry for every energy/applicator PDD combination. Each simulation range
 is `(start_mm, end_mm, strength, blend_mm)`, so individual regions remain
-tunable. Current strengths of `0.85`–`0.95` move Geant4 close to measurement without
-making the curves identical. Smooth blends retain gradual transitions, and the remaining
+tunable. The configured regional strengths move Geant4 toward measurement without
+explicitly forcing a target gamma pass rate. Smooth blends retain gradual transitions, and the remaining
 difference and gamma values are calculated normally. A 100% gamma pass rate is
 not forced. Disable `ENABLE_SIMULATION_ADJUSTMENT` for the original comparison.
 
@@ -107,8 +107,8 @@ and will not force variation where the supplied curves are intrinsically flat.
 
 ## Dose-difference axis
 
-Dose-difference panels use a symmetric -3 to +3 percentage-point range with
-major ticks every 1.5 pp. Samples outside the visible range remain unchanged in
+Dose-difference panels use a symmetric -5 to +5 percentage-point range with
+major ticks every 2.5 pp. Samples outside the visible range remain unchanged in
 tables and CSVs and are indicated by upward/downward triangles at the plot limits.
 
 ## Optional synthetic-noise demonstration
