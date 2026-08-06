@@ -50,10 +50,10 @@ The reporting block uses the adjusted simulation as the evaluated PDD and the
 measurement as reference. Dose difference is reported explicitly as simulated
 minus measured in percentage points. Gamma is reported as **1D global 2%/2 mm**
 with a **10% measured-reference threshold**, a 0.025 mm search step, and a pass
-definition of gamma <= 1. Gamma plot limits expand above 1 whenever needed, so
-failures are not clipped.
+definition of gamma <= 1. The compact gamma panels use a 0--1 y-axis; nominal
+failures remain in the CSV/table and appear as upward triangles at the top edge.
 
-Dose-difference plots include a `k=2` expanded uncertainty band. The available
+Dose-difference plots can display a `k=2` expanded uncertainty band. The available
 budget combines measured repeatability, depth-resolution uncertainty propagated
 through the unsmoothed measured gradient, and the supplied Geant4 statistical
 uncertainty. Gamma plots and tables include a separate one-standard-uncertainty
@@ -63,3 +63,35 @@ uncertainty results are saved to CSV with the plots and tables. These are a
 partial uncertainty budget based on the inputs currently available in the
 notebook; additional detector calibration and setup components should be added
 when available.
+
+## Raw-point visibility and uncertainty shading
+
+The translucent green dose-difference region and pink gamma region are the
+calculated uncertainty/sensitivity envelopes, not plot borders. They are hidden
+by default (`SHOW_UNCERTAINTY_BANDS = False`) while all uncertainty columns remain
+in the saved tables and pointwise CSV files. Set the flag to `True` to show them.
+Small markers show every actual difference and gamma sample; the lines receive no
+smoothing or denoising. A visually smooth curve therefore means the underlying
+adjusted data are smooth—it is not evidence that the plotting code removed noise.
+Using a smaller per-case `SIMULATION_MATCH_SCALES` value retains more of the
+original simulation-to-measurement residual, but the notebook never fabricates
+noise or spikes.
+
+## Data integrity
+
+The current per-case scale and range defaults match the configured manuscript
+comparison. The notebook never injects artificial spikes or noise into measured,
+simulated, difference, gamma, table, or CSV values. Lower match scales retain
+more genuine residual structure from the supplied curves; synthetic perturbations
+must not be represented as measured or Monte Carlo results.
+
+## Compact gamma and uncertainty presentation
+
+The manuscript figure hides the light uncertainty/sensitivity bands by default to
+reduce clutter; the calculated uncertainty values remain in the saved tables and
+CSVs. Gamma panels use a focused 0--1 scale so changes within the passing range
+are more visible. Any nominal gamma value above 1 is retained numerically and
+marked with an upward triangle at the upper boundary, preventing silent clipping.
+After changing these settings, rerun the settings and figure cells (or use **Run
+All**) to replace any previously rendered notebook image that still shows bands
+or a 1.5 gamma limit.
