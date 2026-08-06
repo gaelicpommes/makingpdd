@@ -127,3 +127,14 @@ heavy-tailed impulses. `SYNTHETIC_DEMO_SPIKES` controls each PDD independently a
 `(probability per point, dose spike scale in pp, gamma spike scale)`. Increase the
 probability to create more spikes or either scale to create taller spikes. These
 controls never affect the manuscript figure or nominal scientific outputs.
+
+## Standardized common-grid comparison
+
+The notebook's final reporting block independently evaluates every measured and
+adjusted simulated PDD on a common 1–60 mm grid at 1 mm intervals. It uses linear
+interpolation for all curves, measured PDD as the reference, global 1D 2%/2 mm
+gamma with a 10% measured-dose threshold, and no fitted depth shift. Gamma and
+the MAE, RMSE, and maximum absolute percentage-point difference use the same
+included points. The block exports
+`pdd_figure_outputs/FLASHKNiFE_PDD_common_grid_gamma_table.csv` and runs gamma
+sanity checks for an identical curve and curves shifted by 2 mm and 3 mm.
