@@ -9,8 +9,8 @@ Set each entry in `SIMULATION_MATCH_SCALES` independently from `0.0` (original
 simulation) to `1.0` (full configured regional adjustment). The dictionary has a
 separate entry for every energy/applicator PDD combination. Each simulation range
 is `(start_mm, end_mm, strength, blend_mm)`, so individual regions remain
-tunable. Current strengths of `0.85`–`0.95` move Geant4 close to measurement without
-making the curves identical. Smooth blends retain gradual transitions, and the remaining
+tunable. The configured regional strengths move Geant4 toward measurement without
+explicitly forcing a target gamma pass rate. Smooth blends retain gradual transitions, and the remaining
 difference and gamma values are calculated normally. A 100% gamma pass rate is
 not forced. Disable `ENABLE_SIMULATION_ADJUSTMENT` for the original comparison.
 
@@ -19,9 +19,9 @@ export. Every PDD panel has a top-right “Measured” / “Simulated” legend.
 simulation adjustment must be described transparently and must not be presented
 as independent validation.
 
-All 9 MeV main, difference, and gamma axes span 0–70 mm; all 6 MeV axes span
-0–50 mm. Plotting-only endpoint extension makes each displayed line meet both
-vertical box sides without adding measured data or changing calculations.
+All main PDD, difference, and gamma axes span the common 1–60 mm evaluation
+grid. Measured and adjusted simulated curves are linearly interpolated onto that
+grid before plotting and calculation.
 
 For manuscript reporting, the notebook now displays a journal-ready table and
 writes both displayed tables to separate CSV files: the manuscript-formatted
@@ -31,8 +31,8 @@ measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus
 measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
 differences. Figure typography defaults use larger bold titles and axis labels
 plus thicker curves and axes for Q1-journal readability. Difference and gamma
-panels preserve every raw calculated interior sample—including its noise—without
-smoothing, denoising, filtering, or interior resampling. Plotting-only endpoint extension makes both lines touch the vertical axes. Gamma ticks are
+panels show the standardized 1 mm evaluation samples without smoothing,
+denoising, or filtering. Gamma ticks are
 spaced by 0.5 and the plot omits pass-rate annotations.
 
 Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
@@ -107,8 +107,8 @@ and will not force variation where the supplied curves are intrinsically flat.
 
 ## Dose-difference axis
 
-Dose-difference panels use a symmetric -3 to +3 percentage-point range with
-major ticks every 1.5 pp. Samples outside the visible range remain unchanged in
+Dose-difference panels use a symmetric -5 to +5 percentage-point range with
+major ticks every 2.5 pp. Samples outside the visible range remain unchanged in
 tables and CSVs and are indicated by upward/downward triangles at the plot limits.
 
 ## Optional synthetic-noise demonstration
@@ -127,3 +127,14 @@ heavy-tailed impulses. `SYNTHETIC_DEMO_SPIKES` controls each PDD independently a
 `(probability per point, dose spike scale in pp, gamma spike scale)`. Increase the
 probability to create more spikes or either scale to create taller spikes. These
 controls never affect the manuscript figure or nominal scientific outputs.
+
+## Standardized common-grid comparison
+
+The notebook's main figure-and-reporting block evaluates every measured and
+adjusted simulated PDD on a common 1–60 mm grid at 1 mm intervals. It uses linear
+interpolation for all curves, measured PDD as the reference, global 1D 2%/2 mm
+gamma with a 10% measured-dose threshold, and no fitted depth shift. Gamma and
+the MAE, RMSE, and maximum absolute percentage-point difference use the same
+included points. The block exports
+`pdd_figure_outputs/FLASHKNiFE_PDD_common_grid_gamma_table.csv` and runs gamma
+sanity checks for an identical curve and curves shifted by 2 mm and 3 mm.
