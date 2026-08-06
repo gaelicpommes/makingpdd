@@ -5,14 +5,17 @@ and dose values are never shifted, smoothed, scaled, offset, or matched. Optiona
 regional matching modifies only Geant4 and exports both original and adjusted
 simulation values for audit.
 
-Each simulation range is `(start_mm, end_mm, strength, blend_mm)`. Current
-strengths of `0.85`–`0.90` move Geant4 close to measurement without making the
-curves identical. Smooth blends retain gradual transitions, and the remaining
+Set each entry in `SIMULATION_MATCH_SCALES` independently from `0.0` (original
+simulation) to `1.0` (full configured regional adjustment). The dictionary has a
+separate entry for every energy/applicator PDD combination. Each simulation range
+is `(start_mm, end_mm, strength, blend_mm)`, so individual regions remain
+tunable. Current strengths of `0.85`–`0.95` move Geant4 close to measurement without
+making the curves identical. Smooth blends retain gradual transitions, and the remaining
 difference and gamma values are calculated normally. A 100% gamma pass rate is
 not forced. Disable `ENABLE_SIMULATION_ADJUSTMENT` for the original comparison.
 
-The PDD panels include a light dashed 100% guide. This indicates the normalized
-maximum-dose level; it is not a calculated depth-of-dmax marker. All post-hoc
+The PDD panels omit the former 100% guide and overall figure title for a cleaner
+export. Every PDD panel has a top-right “Measured” / “Simulated” legend. All post-hoc
 simulation adjustment must be described transparently and must not be presented
 as independent validation.
 
@@ -21,11 +24,16 @@ All 9 MeV main, difference, and gamma axes span 0–70 mm; all 6 MeV axes span
 vertical box sides without adding measured data or changing calculations.
 
 For manuscript reporting, the notebook now displays a journal-ready table and
-writes the same values to the summary CSV. For each PDD, the table includes
+writes both displayed tables to separate CSV files: the manuscript-formatted
+journal table (`FLASHKNiFE_PDD_journal_table.csv`) and the complete analysis
+summary (`FLASHKNiFE_PDD_comparison_summary.csv`). For each PDD, the table includes
 measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus-
 measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
 differences. Figure typography defaults use larger bold titles and axis labels
-plus thicker curves and axes for Q1-journal readability.
+plus thicker curves and axes for Q1-journal readability. Difference and gamma
+panels preserve every raw calculated interior sample—including its noise—without
+smoothing, denoising, filtering, or interior resampling. Plotting-only endpoint extension makes both lines touch the vertical axes. Gamma ticks are
+spaced by 0.5 and the plot omits pass-rate annotations.
 
 Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
 summary. The current notebook settings include `u_MC` at dmax plus the mean and
