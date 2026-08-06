@@ -95,3 +95,18 @@ marked with an upward triangle at the upper boundary, preventing silent clipping
 After changing these settings, rerun the settings and figure cells (or use **Run
 All**) to replace any previously rendered notebook image that still shows bands
 or a 1.5 gamma limit.
+
+## Three-region matching
+
+The 9 MeV/2 cm, 6 MeV/10 cm, 6 MeV/5 cm, and 6 MeV/2 cm cases now have separate
+entrance, central/falloff, and tail matching regions. Stronger central/falloff
+matching keeps the main PDD curves close, while weaker surrounding regions retain
+more genuine residual variation. Region splitting does not create synthetic noise
+and will not force variation where the supplied curves are intrinsically flat.
+
+
+## Dose-difference axis
+
+Dose-difference panels use a symmetric -3 to +3 percentage-point range with
+major ticks every 1.5 pp. Samples outside the visible range remain unchanged in
+tables and CSVs and are indicated by upward/downward triangles at the plot limits.
