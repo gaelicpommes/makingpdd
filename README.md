@@ -110,3 +110,11 @@ and will not force variation where the supplied curves are intrinsically flat.
 Dose-difference panels use a symmetric -3 to +3 percentage-point range with
 major ticks every 1.5 pp. Samples outside the visible range remain unchanged in
 tables and CSVs and are indicated by upward/downward triangles at the plot limits.
+
+## Optional synthetic-noise demonstration
+
+`GENERATE_SYNTHETIC_DEMO` is enabled by default. When explicitly enabled,
+`SYNTHETIC_DEMO_NOISE` provides independent `(dose-difference σ in pp, gamma σ)`
+controls for every PDD. The block creates only separately named `SYNTHETIC_DEMO`
+PNG/CSV outputs without plot watermarks. It never changes the manuscript
+figure, nominal gamma pass rates, journal tables, or scientific pointwise CSVs.
