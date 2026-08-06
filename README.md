@@ -43,3 +43,23 @@ they do not modify or re-weight the measured or simulated curves. The measured
 repeatability uncertainty is currently set to 0% because the three charge repeats
 were identical within recorded precision, while the 1 mm depth step is recorded
 as a ±0.5 mm depth-position uncertainty.
+
+## Journal comparison method
+
+The reporting block uses the adjusted simulation as the evaluated PDD and the
+measurement as reference. Dose difference is reported explicitly as simulated
+minus measured in percentage points. Gamma is reported as **1D global 2%/2 mm**
+with a **10% measured-reference threshold**, a 0.025 mm search step, and a pass
+definition of gamma <= 1. Gamma plot limits expand above 1 whenever needed, so
+failures are not clipped.
+
+Dose-difference plots include a `k=2` expanded uncertainty band. The available
+budget combines measured repeatability, depth-resolution uncertainty propagated
+through the unsmoothed measured gradient, and the supplied Geant4 statistical
+uncertainty. Gamma plots and tables include a separate one-standard-uncertainty
+sensitivity envelope/range; uncertainty does not relax or redefine the 2%/2 mm
+acceptance criterion. The pointwise difference and gamma values and their
+uncertainty results are saved to CSV with the plots and tables. These are a
+partial uncertainty budget based on the inputs currently available in the
+notebook; additional detector calibration and setup components should be added
+when available.
