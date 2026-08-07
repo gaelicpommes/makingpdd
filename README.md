@@ -21,8 +21,9 @@ as independent validation.
 
 All main PDD, difference, and gamma axes span the common 1–60 mm evaluation
 grid. Gamma is overlaid on each PDD panel on a secondary right y-axis, with the
-axis title, major and minor ticks, tick labels, and spine matching the gamma
-curve colour; the dose-difference subplot remains below. Measured and adjusted simulated curves are
+single-line axis title, quarter-step ticks, tick labels, and spine matching the
+gamma curve colour. The compact dose-difference subplot remains below and carries
+the shared depth-axis title and numbered ticks. Measured and adjusted simulated curves are
 linearly interpolated onto that grid before plotting and calculation.
 
 For manuscript reporting, the notebook now displays a journal-ready table and
@@ -34,8 +35,8 @@ measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dos
 differences. Figure typography defaults use larger bold titles and axis labels
 plus thicker curves and axes for Q1-journal readability. Difference subplots and
 overlaid gamma curves show the standardized 1 mm evaluation samples without
-smoothing, denoising, or filtering. Gamma major ticks are spaced by 0.5, minor
-ticks are spaced by 0.25, and the plot omits pass-rate annotations.
+smoothing, denoising, or filtering. Gamma major ticks are spaced by 0.25, minor
+ticks are spaced by 0.125, and the plot omits pass-rate annotations.
 
 Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
 summary. The current notebook settings include `u_MC` at dmax plus the mean and
