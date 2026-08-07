@@ -22,7 +22,9 @@ as independent validation.
 All main PDD, difference, and gamma axes span the common 1–60 mm evaluation
 grid. Gamma is overlaid on each PDD panel on a secondary right y-axis, with the
 axis title, major and minor ticks, tick labels, and spine matching the gamma
-curve colour; the dose-difference subplot remains below. Measured and adjusted simulated curves are
+curve colour. Thus, each journal case has only two visible rows: the combined
+PDD/gamma plot and the dose-difference subplot below it; there is no separate
+gamma subplot. Measured and adjusted simulated curves are
 linearly interpolated onto that grid before plotting and calculation.
 
 For manuscript reporting, the notebook now displays a journal-ready table and
