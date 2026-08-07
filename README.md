@@ -15,13 +15,15 @@ difference and gamma values are calculated normally. A 100% gamma pass rate is
 not forced. Disable `ENABLE_SIMULATION_ADJUSTMENT` for the original comparison.
 
 The PDD panels omit the former 100% guide and overall figure title for a cleaner
-export. Every PDD panel has a top-right “Measured” / “Simulated” legend. All post-hoc
+export. Every PDD panel has a top-right “Measured” / “Simulated” / “Gamma index” legend. All post-hoc
 simulation adjustment must be described transparently and must not be presented
 as independent validation.
 
 All main PDD, difference, and gamma axes span the common 1–60 mm evaluation
-grid. Measured and adjusted simulated curves are linearly interpolated onto that
-grid before plotting and calculation.
+grid. Gamma is overlaid on each PDD panel on a secondary right y-axis, with the
+axis title, ticks, tick labels, and spine matching the gamma curve colour; the
+dose-difference subplot remains below. Measured and adjusted simulated curves are
+linearly interpolated onto that grid before plotting and calculation.
 
 For manuscript reporting, the notebook now displays a journal-ready table and
 writes both displayed tables to separate CSV files: the manuscript-formatted
@@ -30,10 +32,9 @@ summary (`FLASHKNiFE_PDD_comparison_summary.csv`). For each PDD, the table inclu
 measured and displayed-simulation dmax, R90, R80, R50, and R20; simulation-minus-
 measurement range differences; 2%/2 mm gamma pass rate; and mean and maximum dose
 differences. Figure typography defaults use larger bold titles and axis labels
-plus thicker curves and axes for Q1-journal readability. Difference and gamma
-panels show the standardized 1 mm evaluation samples without smoothing,
-denoising, or filtering. Gamma ticks are
-spaced by 0.5 and the plot omits pass-rate annotations.
+plus thicker curves and axes for Q1-journal readability. Difference subplots and
+overlaid gamma curves show the standardized 1 mm evaluation samples without
+smoothing, denoising, or filtering. Gamma ticks are spaced by 0.5 and the plot omits pass-rate annotations.
 
 Monte Carlo uncertainty values can be reported from a provided Geant4 uncertainty
 summary. The current notebook settings include `u_MC` at dmax plus the mean and
@@ -50,7 +51,7 @@ The reporting block uses the adjusted simulation as the evaluated PDD and the
 measurement as reference. Dose difference is reported explicitly as simulated
 minus measured in percentage points. Gamma is reported as **1D global 2%/2 mm**
 with a **10% measured-reference threshold**, a 0.025 mm search step, and a pass
-definition of gamma <= 1. The compact gamma panels use a 0--1 y-axis; nominal
+definition of gamma <= 1. The compact overlaid gamma axes use a 0--1 y-axis; nominal
 failures remain in the CSV/table and appear as upward triangles at the top edge.
 
 Dose-difference plots can display a `k=2` expanded uncertainty band. The available
@@ -89,8 +90,8 @@ must not be represented as measured or Monte Carlo results.
 
 The manuscript figure hides the light uncertainty/sensitivity bands by default to
 reduce clutter; the calculated uncertainty values remain in the saved tables and
-CSVs. Gamma panels use a focused 0--1 scale so changes within the passing range
-are more visible. Any nominal gamma value above 1 is retained numerically and
+CSVs. Overlaid gamma axes use a focused 0--1 scale so changes within the passing
+range are more visible. Any nominal gamma value above 1 is retained numerically and
 marked with an upward triangle at the upper boundary, preventing silent clipping.
 After changing these settings, rerun the settings and figure cells (or use **Run
 All**) to replace any previously rendered notebook image that still shows bands
